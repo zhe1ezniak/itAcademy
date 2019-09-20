@@ -1,17 +1,28 @@
 package task2;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class PrimeFinder implements Runnable {
     private int startCount;
     private int finishCount;
+    private boolean addToCommonSet;
+    private volatile Set<Integer> numbers;
 
-    public PrimeFinder(int start, int finish) {
+    public PrimeFinder(int start, int finish, boolean addToCommonSet) {
         this.startCount = start;
         this.finishCount = finish;
+        this.addToCommonSet = addToCommonSet;
+        numbers = new HashSet<>();
+    }
+
+    public Set<Integer> getNumbers() {
+        return numbers;
     }
 
     @Override
     public void run() {
-        if (startCount == 1) {
+        if (startCount == 1 || startCount == 0) {
             startCount = 2;
         }
         for (int i = startCount; i <= finishCount; i++){
@@ -23,8 +34,13 @@ public class PrimeFinder implements Runnable {
                 }
             }
             if (isPrime) {
-                Main.primes.add(i);
+                if (addToCommonSet) {
+                    Main.primes.add(i);
+                } else {
+                    numbers.add(i);
+                }
             }
         }
     }
 }
+
