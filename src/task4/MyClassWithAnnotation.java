@@ -1,8 +1,9 @@
 package task4;
 
-/**
- * @author devonline
- * @link http://devonline.academy/javamm
- */
+@MyAnnotation
 public class MyClassWithAnnotation {
+    @Override
+    public String toString() {
+        return "MyClassWithAnnotation{}";
+    }
 }

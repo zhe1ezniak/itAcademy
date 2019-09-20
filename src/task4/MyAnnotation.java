@@ -1,8 +1,8 @@
 package task4;
 
-/**
- * @author devonline
- * @link http://devonline.academy/javamm
- */
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
+@Retention(value = RetentionPolicy.RUNTIME)
 public @interface MyAnnotation {
 }
